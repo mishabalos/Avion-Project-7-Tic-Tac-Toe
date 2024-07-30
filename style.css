@@ -1,0 +1,316 @@
+*, *::after, *::before {
+  box-sizing: border-box; 
+}
+
+:root {
+  --cell-size: 100px; 
+  --mark-size: calc(var(--cell-size) * .9); 
+  --cell-size2: 70px; 
+  --mark-size2: calc(var(--cell-size2) * .9); 
+}
+
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.yatra-one-regular {
+  font-family: "Yatra One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0; 
+  background-color: #2c003e;
+}
+
+#title {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 8vmin;
+  text-align: center; 
+  position: absolute;
+  top: 10%;
+  width: 100vw;
+  color: #ffff00;
+}
+
+.selectPlayer {
+  font-family: "Silkscreen", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+  width: 100vw;
+  height: 30vmin;
+  font-size: 6vmin;
+  color: #ffff00;
+  text-shadow: 
+  0 0 5px black,
+  0 0 10px #fff,
+  0 0 20px #ffff00,
+  0 0 30px #ffff00,
+  0 0 50px #ffff00,
+  0 0 65px #ffff00;
+  background-color: #2c003e;
+}
+
+#selectButtonsDiv {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-evenly;
+  width: 60vmin;
+}
+
+.selectButtons {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 6vmin;
+  border-radius: 5%;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5em 0.8em;
+}
+
+#xButton {
+  background-color: #39ff14
+}
+
+#oButton {
+  background-color: #ff00ff
+}
+
+.selectButtons:hover {
+  background-color: black; 
+  color: white;
+  border-color: white; 
+}
+
+.board {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20px;
+  display: grid;
+  justify-content: center;
+  align-content: center; 
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid white; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  cursor: pointer; 
+}
+
+.cell:first-child, 
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none; 
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none; 
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none; 
+}
+
+.cell:last-child, 
+.cell:nth-child(8),
+.cell:nth-child(7) {
+  border-bottom: none; 
+}
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed; 
+}
+
+.cell.x::before, 
+.cell.x::after {
+  background-color:#39ff14;
+}
+
+.cell.circle::before {
+  background-color: #ff00ff;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgrey; 
+}
+
+.cell.x::before, 
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  content: ''; 
+  position: absolute; 
+  width: calc(var(--mark-size)* .15); 
+  height: var(--mark-size); 
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg); 
+}
+
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg); 
+}
+
+.cell.circle::before, 
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+  content: ''; 
+  position: absolute; 
+  border-radius: 50%; 
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  width: var(--mark-size); 
+  height: var(--mark-size); 
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+  width: calc(var(--mark-size) * .7); 
+  height: calc(var(--mark-size) * .7);
+  background-color: #2c003e;
+}
+
+.winning-message {
+  font-family: "Silkscreen", sans-serif;
+  display: none; 
+  position: absolute;
+  width: 100%; 
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  font-size: 6vmin; 
+  flex-direction: column;
+  top: 23%; 
+}
+
+#winningMessage > div > div {
+padding-top: 10px; 
+}
+
+.winning-message.show {
+  display: flex;
+}
+
+#moveButtons {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 15px; */
+}
+
+#previousButton, #nextButton, #restartButton {
+  font-size: 50px;
+  color: #ff4500;
+  cursor: pointer;
+  margin: 0 20px;
+}
+
+#restartButton {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 2.5vmin;
+  cursor: pointer;
+  border-radius: 5px;
+  border-width: 2px;
+  background-color: #ff4500;
+  color: white;
+  padding: 0.5em 1em;
+}
+
+#restartButton:hover, #previousButton:hover, #nextButton:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    
+  .selectPlayer {
+    top: 30%;
+  }
+
+  .board {
+    height: 80vh;
+    padding-top: 20px;
+  }
+
+  .cell {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cell.x::before, 
+  .cell.x::after,
+  .board.x .cell:not(.x):not(.circle):hover::before,
+  .board.x .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size2)* .15); 
+    height: var(--mark-size2); 
+  }
+
+  .cell.circle::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size2); 
+    height: var(--mark-size2); 
+  }
+
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size2) * .7); 
+    height: calc(var(--mark-size2) * .7);
+  }
+  
+  #moveButtons {
+    bottom: 28%;
+  }
+
+  #previousButton, #nextButton, #restartButton {
+    font-size: 40px;
+  }
+
+  #restartButton {
+    font-size: 2vmax;
+  }
+  
+  .winning-message {
+    top: 18%; 
+  }
+
+  #winningMessage > div > div {
+    font-size: 30px; 
+  }
+  
+} 
+

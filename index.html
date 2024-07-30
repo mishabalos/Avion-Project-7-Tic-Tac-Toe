@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>TicTacToe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Yatra+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <h1 id="title">TIC TAC TOE</h1>
+
+  <div id="selectPlayer" class="selectPlayer">
+    <p>Choose your player</p>
+    <div id="selectButtonsDiv">
+    <button class="selectButtons" id="xButton">X</button>
+    <button class="selectButtons" id="oButton">O</button>
+    </div>
+  </div>
+
+  <div class="winning-message" id="winningMessage">
+    <div>
+      <div data-winning-message-text></div>
+    </div>
+  </div>
+  
+  <div class="board" id="board">
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+
+  <div id="moveButtons">
+    <i id="previousButton" class="fa-regular fa-square-caret-left"></i>
+    <button id="restartButton">Restart</button>
+    <i id="nextButton" class="fa-regular fa-square-caret-right"></i>
+  </div>
+  <div id="moveHistory" class="move-history"></div>
+  <script src="
+  https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js
+  "></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
